@@ -57,5 +57,4 @@ crashlytics-build.properties
 
 # Ignore everything in these folders
 Assets/Avatar - masked
-ProjectSettings/ProjectVersion.txt
 
