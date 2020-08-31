@@ -111,17 +111,6 @@ public class Enemy_1 : MonoBehaviour
         avatarAnimation.SetBool("onGround", isOnGround);
         //Move the AI
         
-        
-        // sprite orientation
-        /*if (dir.x < 0f)
-        {
-            transform.localScale = new Vector2(enemy_scale, transform.localScale.y);
-        }
-        if (dir.x > 0f)
-        {
-            transform.localScale = new Vector2(-enemy_scale, transform.localScale.y);
-        }*/
-        // moving right
         if (dir.x > 0f)
         {
             rb.velocity = new Vector2(dir.x , 0);
@@ -150,6 +139,16 @@ public class Enemy_1 : MonoBehaviour
         {
             rb.AddForce(Y, fmode);
         }*/
+        // sprite orientation
+        /*if (dir.x < 0f)
+        {
+            transform.localScale = new Vector2(enemy_scale, transform.localScale.y);
+        }
+        if (dir.x > 0f)
+        {
+            transform.localScale = new Vector2(-enemy_scale, transform.localScale.y);
+        }*/
+        // moving right
         float dist = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
         if (dist < nextPointDist)
         {
