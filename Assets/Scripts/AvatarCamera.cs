@@ -17,6 +17,7 @@ public class AvatarCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
       // me
       if(avatar.activeInHierarchy == true && avatarMasked.activeInHierarchy == false){
         // camera should only change x-axis
@@ -47,9 +48,12 @@ public class AvatarCamera : MonoBehaviour
         }
       }
 
-
+      Vector3 camStart = new Vector3(-22f, -2.79f, -10f);
+      Vector3 camEnd = new Vector3(270f,-2.79f,-10f);
+      if((transform.position.x >= camStart.x) && (transform.position.x <= camEnd.x))
       // ensuring camera change is slow and smoothe
-      transform.position = Vector3.Lerp(transform.position, avatarPosition, offsetSmoothing*Time.deltaTime);
-    }
+      {transform.position = Vector3.Lerp(transform.position, avatarPosition, offsetSmoothing*Time.deltaTime);}
+    
+  }
 
 }
