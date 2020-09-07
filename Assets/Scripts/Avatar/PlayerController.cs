@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     private bool isOnGround;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Checking if player is on the ground
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
@@ -56,4 +58,5 @@ public class PlayerController : MonoBehaviour
         avatarAnimation.SetFloat("Speed", Mathf.Abs(avatar.velocity.x));
         avatarAnimation.SetBool("onGround", isOnGround);
     }
+    
 }
