@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 public class QuizQandA : MonoBehaviour
 {	
     //Possible questions and their answers
-    public ArrayList question1 =new ArrayList() {"Question 1","Answer 1","Answer 2", "Answer 3","Answer 4"};
-	public ArrayList question2 =new ArrayList() {"Question 2","Answer 1","Answer 2", "Answer 3","Answer 4"};
-	public ArrayList question3 =new ArrayList() {"Question 3","Answer 1","Answer 2", "Answer 3","Answer 4"};
-	public ArrayList question4 =new ArrayList() {"Question 4","Answer 1","Answer 2", "Answer 3","Answer 4"};
+    public ArrayList question1 =new ArrayList() { "Why are masks important during this epidemic?", "They are the trendiest fashion statement", "They keep your face warm", "They prevent droplets from entering your body through the face", "Masks are required to gain entry to most stores" };
+	public ArrayList question2 =new ArrayList() { "What does sanitizing your hands do?", "Makes them smell nice, like ethanol", "Sanitizer kills virus on your skin preventing your touch from spreading it", "It makes people feel cleaner", "Sanitizing does nothing" };
+	public ArrayList question3 =new ArrayList() { "What is the appropriate Social Distance to maintain?", "None","Half a meter", "One meter","One and a half meters"};
+	public ArrayList question4 =new ArrayList() { "When shopping, what is the least safe payment method?", "Cash","Card (tap to pay)", "Card (swipe with PIN)","Mobile payment option (Zapper/Snapscan)"};
 	
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion =new ArrayList();
