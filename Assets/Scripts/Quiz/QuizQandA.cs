@@ -21,6 +21,9 @@ public class QuizQandA : MonoBehaviour
 
     //counter to check the question number
     private int num =0;
+
+    //score tally
+    public int score = 1;
 	
     void Start()
     {
@@ -62,8 +65,36 @@ public class QuizQandA : MonoBehaviour
 
     void TaskWithParameters(int number)
     {
+        //switch checks if answer was correct
+        switch (num)
+        {
+            case 0:
+                if (number == 3)
+                {
+                    score += 1;
+                }
+                break;
+            case 1:
+                if (number == 2)
+                {
+                    score += 1;
+                }
+                break;
+            case 2:
+                if (number == 4)
+                {
+                    score += 1;
+                }
+                break;
+            case 3:
+                if (number == 4)
+                {
+                    score += 1;
+                }
+                break;
+        }
         //Four Questions will be displayed in then there will be a transition to the next scene
-        if(num < 4){
+        if (num < 4){
             num++;
         }
         if(num>=4){
