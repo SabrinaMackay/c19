@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D avatar;
     private Animator avatarAnimation;
     private float horizontal_movement = 0f;
-    private float jump_speed = 8f;
-    public float move_speed = 5f;
+    private float jump_speed = 8.75f;
+    public float move_speed = 4f;
     private float avatar_scale;
     // for detecting if avatar is on the onGround
     public Transform groundCheck;
@@ -58,5 +58,5 @@ public class PlayerController : MonoBehaviour
         avatarAnimation.SetFloat("Speed", Mathf.Abs(avatar.velocity.x));
         avatarAnimation.SetBool("onGround", isOnGround);
     }
-    
+
 }

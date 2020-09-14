@@ -33,7 +33,7 @@ public class ShoppersController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         // Checking if shopper is on the ground
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
@@ -55,17 +55,17 @@ public class ShoppersController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D crate)
     {
       // Debug.Log(crate.gameObject.name);
-      if(crate.gameObject.name.Contains("wood") || crate.gameObject.name.Contains("enemy"))
+      if(crate.gameObject.name.Contains("wood") || crate.gameObject.name.Contains("enemy") || crate.gameObject.name.Contains("crate"))
       {
         if(horizontal_movement == 0.5f)
         {
           horizontal_movement = -0.5f;
-          
+
         }
         else
         {
           horizontal_movement = 0.5f;
-          
+
         }
       }
     }

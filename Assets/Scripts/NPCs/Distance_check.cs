@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Distance_check : MonoBehaviour
 {
+    // For the pop up when the player loses points
+    public GameObject pointsPopup;
+
     public GameObject Avatar_Masked;
     public GameObject enemy_type1;
     public GameObject enemy_type2;
@@ -19,7 +22,7 @@ public class Distance_check : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,6 +34,10 @@ public class Distance_check : MonoBehaviour
             Debug.Log("social violation");
             slider.value = slider.value - 5;
             flag1 = false;
+
+            // violation pop up
+            GameObject points = Instantiate(pointsPopup, transform.position, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "TOO CLOSE!";
         }
         else if (dist > 3)//reset penalty check
         {
@@ -43,6 +50,10 @@ public class Distance_check : MonoBehaviour
             Debug.Log("social violation");
             slider.value = slider.value - 5;
             flag2 = false;
+
+            // violation pop up
+            GameObject points = Instantiate(pointsPopup, transform.position, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "TOO CLOSE!";
         }
         else if (dist > 3)
         {
@@ -55,6 +66,10 @@ public class Distance_check : MonoBehaviour
             Debug.Log("social violation");
             slider.value = slider.value - 5;
             flag3 = false;
+
+            // violation pop up
+            GameObject points = Instantiate(pointsPopup, transform.position, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "TOO CLOSE!";
         }
         else if (dist > 3)
         {
@@ -67,6 +82,10 @@ public class Distance_check : MonoBehaviour
             Debug.Log("social violation");
             slider.value = slider.value - 5;
             flag4 = false;
+
+            // violation pop up
+            GameObject points = Instantiate(pointsPopup, transform.position, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "TOO CLOSE!";
         }
         else if (dist > 3)
         {
@@ -75,10 +94,14 @@ public class Distance_check : MonoBehaviour
 
         dist = Vector2.Distance(Avatar_Masked.transform.position, enemy_type2_1.transform.position);
         if (dist < 3 & flag5)
-        { 
+        {
             Debug.Log("social violation");
             slider.value = slider.value - 5;
             flag5 = false;
+
+            // violation pop up
+            GameObject points = Instantiate(pointsPopup, transform.position, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "TOO CLOSE!";
         }
         else if(dist > 3)
         {
@@ -91,6 +114,10 @@ public class Distance_check : MonoBehaviour
             Debug.Log("social violation");
             slider.value = slider.value - 5;
             flag6 = false;
+
+            // violation pop up
+            GameObject points = Instantiate(pointsPopup, transform.position, Quaternion.identity) as GameObject;
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = "TOO CLOSE!";
         }
         else if(dist>3)
         {
@@ -98,6 +125,6 @@ public class Distance_check : MonoBehaviour
         }
 
     }
-   
 
-    }
+
+}
