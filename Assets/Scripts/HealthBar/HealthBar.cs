@@ -23,7 +23,11 @@ public class HealthBar : MonoBehaviour
 	
 	public void SetHealth(float health)
 	{
-		slider.value = health; //Slider's value will change to the passed parameter
+		if(health<=0){
+			slider.value = 0;
+		}
+		else{slider.value = health;} //Slider's value will change to the passed parameter
+		
 	}
 
 	public int getHealth(){
