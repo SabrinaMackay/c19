@@ -6,17 +6,17 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class QuizQandA : MonoBehaviour
-{	
+{
     //Possible questions and their answers
-    public ArrayList question1 =new ArrayList() { "Why are masks important during this epidemic?", "They are the trendiest fashion statement", "They keep your face warm", "They prevent droplets from entering your body through the face", "Masks are required to gain entry to most stores" ,"3"};
+  public ArrayList question1 =new ArrayList() { "Why are masks important during this pandemic?", "They are the trendiest fashion statement", "They keep your face warm", "They protect those around you", "Masks are required to gain entry to most stores" ,"3"};
 	public ArrayList question2 =new ArrayList() { "What does sanitizing your hands do?", "Makes them smell nice, like ethanol", "Sanitizer kills virus on your skin preventing your touch from spreading it", "It makes people feel cleaner", "Sanitizing does nothing", "2" };
 	public ArrayList question3 =new ArrayList() { "What is the appropriate Social Distance to maintain?", "None","Half a meter", "One meter","One and a half meters","4"};
 	public ArrayList question4 =new ArrayList() { "When shopping, what is the least safe payment method?", "Cash","Card (tap to pay)", "Card (swipe with PIN)","Mobile payment option (Zapper/Snapscan)","3"};
-	
+
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion =new ArrayList();
-    
-    //Answer buttons 
+
+    //Answer buttons
     public Button ans1, ans2, ans3, ans4;
 
     //Button to next question
@@ -33,15 +33,15 @@ public class QuizQandA : MonoBehaviour
 
     //score tally
     public int score = 1;
-	
+
     void Start()
     {
-        //Button listener method 
+        //Button listener method
         ans1.onClick.AddListener(delegate {ChosenAnswer(1); });
         ans2.onClick.AddListener(delegate {ChosenAnswer(2); });
         ans3.onClick.AddListener(delegate {ChosenAnswer(3); });
         ans4.onClick.AddListener(delegate {ChosenAnswer(4); });
-        
+
     }
 
     void Update(){
@@ -69,7 +69,7 @@ public class QuizQandA : MonoBehaviour
         option3.text = (string)displayQuestion[3];
         Text option4 = GameObject.Find("QuizContainer/Background/ContentContainer/AnswersContainer/Option4/Button/Text").GetComponent<Text>();
         option4.text = (string)displayQuestion[4];
-    
+
 
     }
 
@@ -87,7 +87,7 @@ public class QuizQandA : MonoBehaviour
             incorrectUI.SetActive(true);
             btnIncorrect.onClick.AddListener(backToQuiz);
 
-            
+
         }
         switch (num)
         {
@@ -116,7 +116,7 @@ public class QuizQandA : MonoBehaviour
                 }
                 break;
         }
-        
+
         //Output this to console when Button1 or Button3 is clicked
         Debug.Log($"You have clicked the button {number}!");
     }
@@ -132,9 +132,9 @@ public class QuizQandA : MonoBehaviour
         if(num>=4){
             SceneManager.LoadScene (sceneName:"SampleScene");
         }
-        
+
         //Four Questions will be displayed in then there will be a transition to the next scene
-        
+
     }
 
 }
