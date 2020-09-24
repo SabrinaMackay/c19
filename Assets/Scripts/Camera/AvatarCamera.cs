@@ -5,7 +5,7 @@ using UnityEngine;
 public class AvatarCamera : MonoBehaviour
 {
     private Vector3 avatarPosition;
-    public GameObject avatar, avatarMasked;
+    public GameObject avatar, avatarMasked, avatarBubbled;
     public float offset = 5f;
     public float offsetSmoothing = 0.5f;
     // Start is called before the first frame update
@@ -17,9 +17,10 @@ public class AvatarCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-      // me
-      if(avatar.activeInHierarchy == true && avatarMasked.activeInHierarchy == false){
+        //&& avatarBubbled.activeInHierarchy == false
+        // me
+        if (avatar.activeInHierarchy == true && avatarMasked.activeInHierarchy == false )
+        {
         // camera should only change x-axis
         avatarPosition = new Vector3(avatar.transform.position.x, transform.position.y, transform.position.z);
 
@@ -33,7 +34,8 @@ public class AvatarCamera : MonoBehaviour
           avatarPosition = new Vector3(avatar.transform.position.x - offset, avatarPosition.y, avatarPosition.z);
         }
       }
-      else{
+      else if (avatar.activeInHierarchy == false && avatarMasked.activeInHierarchy == true )
+        {
         // camera should only change x-axis
         avatarPosition = new Vector3(avatarMasked.transform.position.x, transform.position.y, transform.position.z);
 
@@ -46,7 +48,22 @@ public class AvatarCamera : MonoBehaviour
         {
           avatarPosition = new Vector3(avatarMasked.transform.position.x - offset, avatarPosition.y, avatarPosition.z);
         }
-      }
+        }
+        else
+        {
+            // camera should only change x-axis
+            avatarPosition = new Vector3(avatarBubbled.transform.position.x, transform.position.y, transform.position.z);
+
+            // player moves to the right
+            if (avatarBubbled.transform.localScale.x > 0f)
+            {
+                avatarPosition = new Vector3(avatarBubbled.transform.position.x + offset, avatarPosition.y, avatarPosition.z);
+            }
+            else
+            {
+                avatarPosition = new Vector3(avatarBubbled.transform.position.x - offset, avatarPosition.y, avatarPosition.z);
+            }
+        }
 
       Vector3 camStart = new Vector3(-22f, -2.79f, -10f);
       Vector3 camEnd = new Vector3(266f,-2.79f,-10f);

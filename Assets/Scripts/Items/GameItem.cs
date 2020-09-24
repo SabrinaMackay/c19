@@ -5,13 +5,15 @@ using UnityEngine;
 public class GameItem : MonoBehaviour
 {
     public GameObject pointsPopup;
-
     public HealthBar healthBar;
     public int currentHealth;
     
+    //access script to form bubbles
+    SwitchAvatars a;
     // Start is called before the first frame update
     public virtual void Start()
     {
+        a = GameObject.Find("Avatar-Plain").GetComponent<SwitchAvatars>();
     }
 
     // Update is called once per frame
@@ -44,6 +46,12 @@ public class GameItem : MonoBehaviour
           points.transform.GetChild(0).GetComponent<TextMesh>().text = "+5";
           currentHealth += 5;
           healthBar.SetHealth(currentHealth);
+                if (a.whichAvatarIsOn == 3)
+                {
+                    a.SwitchAvatar();
+                }
+          
+          
         }
 
         // Food items are worth 2 points

@@ -5,10 +5,10 @@ using UnityEngine;
 public class SwitchAvatars : MonoBehaviour
 {
     // The two avatars
-    public GameObject avatar, avatarMasked;
+    public GameObject avatar, avatarMasked, avatarBubbled;
 
     // variable which holds active avatar
-    int whichAvatarIsOn = 1;
+    public int whichAvatarIsOn = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class SwitchAvatars : MonoBehaviour
         // Choose plain avatar
         avatar.gameObject.SetActive(true);
         avatarMasked.gameObject.SetActive(false);
+        avatarBubbled.gameObject.SetActive(false);
     }
 
     public void SwitchAvatar()
@@ -23,10 +24,11 @@ public class SwitchAvatars : MonoBehaviour
         switch(whichAvatarIsOn)
         {
           case 1:
-            whichAvatarIsOn = 2;
+            whichAvatarIsOn = 3;
 
-            // disable plain and enable avatar
+            // disable plain and enable masked avatar
             avatar.gameObject.SetActive(false);
+            avatarBubbled.gameObject.SetActive(false);
             avatarMasked.transform.position = new Vector3(avatar.transform.position.x, avatar.transform.position.y, avatar.transform.position.z);
             avatarMasked.SetActive(true);
             break;
@@ -36,8 +38,25 @@ public class SwitchAvatars : MonoBehaviour
 
             // disable masked and enable plain
             avatarMasked.gameObject.SetActive(false);
+            avatarBubbled.gameObject.SetActive(false);
             avatar.gameObject.SetActive(true);
             break;
+          case 3:
+                whichAvatarIsOn = 4;
+                //disable masked and enable bubbled masked
+                avatarMasked.gameObject.SetActive(false);
+                //avatar.gameObject.SetActive(false);
+                avatarBubbled.transform.position = new Vector3(avatarMasked.transform.position.x, avatarMasked.transform.position.y, avatarMasked.transform.position.z);
+                avatarBubbled.gameObject.SetActive(true);
+                break;
+          case 4:
+                whichAvatarIsOn = 3;
+                //avatar.gameObject.SetActive(false);
+                avatarBubbled.gameObject.SetActive(false);
+                avatarMasked.transform.position = new Vector3(avatarBubbled.transform.position.x, avatarBubbled.transform.position.y, avatarBubbled.transform.position.z);
+                avatarMasked.SetActive(true);
+                break;
+
         }
     }
 
