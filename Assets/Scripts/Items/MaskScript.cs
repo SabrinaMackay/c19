@@ -5,12 +5,12 @@ using UnityEngine;
 public class MaskScript : GameItem
 {
     // for accessing script that switches between avatars
-    SwitchAvatars a;
+    SwitchAvatars currentAvatar;
 
     // Start is called before the first frame update
     public override void Start()
     {
-      a = GameObject.Find("Avatar-Plain").GetComponent<SwitchAvatars>();
+      currentAvatar = GameObject.Find("Avatar-Plain").GetComponent<SwitchAvatars>();
     }
 
     // Update is called once per frame
@@ -23,6 +23,6 @@ public class MaskScript : GameItem
     {
       // Destroy(gameObject);
       base.OnTriggerEnter2D(avatar);
-      a.SwitchAvatar();
+      currentAvatar.SwitchAvatar();
     }
 }
