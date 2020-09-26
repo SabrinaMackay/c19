@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SingleChoice : MonoBehaviour
+public class TrueFalse : MonoBehaviour
 {
     //Possible questions and their answers
-    public ArrayList question1 = new ArrayList() { "Add question 1 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4" ,"3"};
-  	public ArrayList question2 = new ArrayList() { "Add question 2 here, Correct answer is 2. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4", "2" };
-  	public ArrayList question3 = new ArrayList() { "Add question 3 here, Correct answer is 4. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4","4"};
-  	public ArrayList question4 = new ArrayList() { "Add question 4 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4","3"};
-    public ArrayList question5 = new ArrayList() { "Add question 5 here, Correct answer is 1. What is your question? Is it community or personal score based?", "BootyEater69", "Option 2", "Option 3", "Option 4", "1"};
+    public ArrayList question1 = new ArrayList() { "Add True or False Statement here.", "True", "False" , "1"};
+  	public ArrayList question2 = new ArrayList() { "Add True or False Statement here.", "True", "False" , "0"};
+  	public ArrayList question3 = new ArrayList() { "Add True or False Statement here.", "True", "False" ,"1"};
+  	public ArrayList question4 = new ArrayList() { "Add True or False Statement here.", "True", "False" ,"0"};
+    public ArrayList question5 = new ArrayList() { "Add True or False Statement here.", "True", "False" ,"1"};
 
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion = new ArrayList();
 
     //Answer buttons
-    public Button ans1, ans2, ans3, ans4;
+    public Button ans1, ans2;
     private int checkNumber;
 
     //Correct and Incorrect Canvas
@@ -26,7 +26,7 @@ public class SingleChoice : MonoBehaviour
     private GameObject popUp;
 
     // default colour for the possible answers
-    private Color blue = new Color32(28, 126, 221, 204);
+    private Color purple = new Color32(188, 54, 255, 204);
 
     // Score and InfectionBar scripts
     Score scoreScript;
@@ -45,10 +45,9 @@ public class SingleChoice : MonoBehaviour
     void Start()
     {
         //Button listener method
+        // 1 - True, 0 - False
         ans1.onClick.AddListener(delegate {ChosenAnswer(1); });
-        ans2.onClick.AddListener(delegate {ChosenAnswer(2); });
-        ans3.onClick.AddListener(delegate {ChosenAnswer(3); });
-        ans4.onClick.AddListener(delegate {ChosenAnswer(4); });
+        ans2.onClick.AddListener(delegate {ChosenAnswer(0); });
 
         // access score Script
         scoreScript = GameObject.Find("Quiz UI/Scores").GetComponent<Score>();
@@ -73,16 +72,10 @@ public class SingleChoice : MonoBehaviour
         questionObj.text = (string)displayQuestion[0];
 
         //Displays the possible answers
-        Text option1 = GameObject.Find("Quiz UI/Solutions/TopLeft Sol/Text").GetComponent<Text>();
+        Text option1 = GameObject.Find("Quiz UI/Solutions/True/Text").GetComponent<Text>();
         option1.text = (string)displayQuestion[1];
-        Text option2 = GameObject.Find("Quiz UI/Solutions/TopRight Sol/Text").GetComponent<Text>();
+        Text option2 = GameObject.Find("Quiz UI/Solutions/False/Text").GetComponent<Text>();
         option2.text = (string)displayQuestion[2];
-        Text option3 = GameObject.Find("Quiz UI/Solutions/BottomLeft Sol/Text").GetComponent<Text>();
-        option3.text = (string)displayQuestion[3];
-        Text option4 = GameObject.Find("Quiz UI/Solutions/BottomRight Sol/Text").GetComponent<Text>();
-        option4.text = (string)displayQuestion[4];
-
-        // Debug.Log("num value: "+num);
     }
 
     void ChosenAnswer(int number)
@@ -91,7 +84,7 @@ public class SingleChoice : MonoBehaviour
 
         checkNumber = number;
         //switch checks if answer was correct and displays the corresponding screen
-        if(number == int.Parse((string)displayQuestion[5]))
+        if(number == int.Parse((string)displayQuestion[3]))
         {
             // change colour of selected option
             switchGreen();
@@ -117,40 +110,29 @@ public class SingleChoice : MonoBehaviour
             currentHealth += 33;
             infectionB.SetHealth(currentHealth);
 
-            // display incorrect pop
+            // display incorrect popup
             Invoke("incorrectPopUp", 0.5f);
 
             // display next quiz question
             Invoke("backToQuiz", 2);
         }
 
-        switch (num)
-        {
-            case 0:
-                if (number == 3)
-                {
-                    score += 1;
-                }
-                break;
-            case 1:
-                if (number == 2)
-                {
-                    score += 1;
-                }
-                break;
-            case 2:
-                if (number == 4)
-                {
-                    score += 1;
-                }
-                break;
-            case 3:
-                if (number == 4)
-                {
-                    score += 1;
-                }
-                break;
-        }
+        // switch (num)
+        // {
+        //     case 0:
+        //         if (number == 1)
+        //         {
+        //             score += 1;
+        //         }
+        //         break;
+        //     case 1:
+        //         if (number == 2)
+        //         {
+        //             score += 1;
+        //         }
+        //         break;
+        //
+        // }
 
         //Output this to console when Button1 or Button3 is clicked
         Debug.Log($"You have clicked the button {number}!");
@@ -158,7 +140,7 @@ public class SingleChoice : MonoBehaviour
 
     void backToQuiz(){
 
-        switchBlue();
+        switchPurple();
 
         if (num < 4){
             num++;
@@ -180,17 +162,10 @@ public class SingleChoice : MonoBehaviour
           ans1.GetComponent<Image>().color = Color.red;
           break;
 
-        case 2:
+        case 0:
           ans2.GetComponent<Image>().color = Color.red;
           break;
 
-        case 3:
-          ans3.GetComponent<Image>().color = Color.red;
-          break;
-
-        case 4:
-          ans4.GetComponent<Image>().color = Color.red;
-          break;
       }
     }
 
@@ -202,39 +177,25 @@ public class SingleChoice : MonoBehaviour
           ans1.GetComponent<Image>().color = Color.green;
           break;
 
-        case 2:
+        case 0:
           ans2.GetComponent<Image>().color = Color.green;
           break;
 
-        case 3:
-          ans3.GetComponent<Image>().color = Color.green;
-          break;
-
-        case 4:
-          ans4.GetComponent<Image>().color = Color.green;
-          break;
       }
     }
 
-    void switchBlue()
+    void switchPurple()
     {
       switch(checkNumber)
       {
         case 1:
-          ans1.GetComponent<Image>().color = blue;
+          ans1.GetComponent<Image>().color = purple;
           break;
 
-        case 2:
-          ans2.GetComponent<Image>().color = blue;
+        case 0:
+          ans2.GetComponent<Image>().color = purple;
           break;
 
-        case 3:
-          ans3.GetComponent<Image>().color = blue;
-          break;
-
-        case 4:
-          ans4.GetComponent<Image>().color = blue;
-          break;
       }
     }
 
