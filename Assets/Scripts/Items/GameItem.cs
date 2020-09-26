@@ -5,28 +5,27 @@ using UnityEngine;
 public class GameItem : MonoBehaviour
 {
     public GameObject pointsPopup;
+
     public HealthBar healthBar;
     public int currentHealth;
-    
-    //access script to form bubbles
-    SwitchAvatars a;
+
+
     // Start is called before the first frame update
     public virtual void Start()
     {
-        a = GameObject.Find("Avatar-Plain").GetComponent<SwitchAvatars>();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-      
+
     }
 
     // Item has to dissappear when avatar comes into contact with it
     public virtual void OnTriggerEnter2D(Collider2D avatar)
     {
       currentHealth = healthBar.getHealth();//get the current value of the health bar
-      
+
       if(avatar.gameObject.name.Contains("Avatar"))
       {
         // Mask is worth 10 points
@@ -37,6 +36,7 @@ public class GameItem : MonoBehaviour
           //print(currentHealth);
           currentHealth += 10;
           healthBar.SetHealth(currentHealth);
+
         }
 
         // sanitizers are worth 5 points
@@ -46,12 +46,14 @@ public class GameItem : MonoBehaviour
           points.transform.GetChild(0).GetComponent<TextMesh>().text = "+5";
           currentHealth += 5;
           healthBar.SetHealth(currentHealth);
-                if (a.whichAvatarIsOn == 3)
-                {
-                    a.SwitchAvatar();
-                }
-          
-          
+
+          // Create shield - only masked avatar can use shield
+          if(avatar.gameObject.name.Contains("Mask"))
+          {
+            ShieldCaller shieldScript = avatar.transform.GetChild(1).GetComponent<ShieldCaller>();
+            shieldScript.makeActive();
+            shieldScript.makeInactive();
+          }
         }
 
         // Food items are worth 2 points

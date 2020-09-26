@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 842597474987737964, guid: e548afcc53e889b4fa38885b10b38b0e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 842597474987737964, guid: e548afcc53e889b4fa38885b10b38b0e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 842597474987737966, guid: e548afcc53e889b4fa38885b10b38b0e,
         type: 3}
       propertyPath: m_FontSize
