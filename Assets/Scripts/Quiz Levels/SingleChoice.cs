@@ -216,6 +216,7 @@ public class SingleChoice : MonoBehaviour
       }
     }
 
+    // switch button colour to blue
     void switchBlue()
     {
       switch(checkNumber)
@@ -238,12 +239,23 @@ public class SingleChoice : MonoBehaviour
       }
     }
 
+    // show correct UI
     void correctPopUp(){
       popUp = Instantiate(correctUI, transform.position, Quaternion.identity) as GameObject;
     }
 
+    // show incorrect UI
     void incorrectPopUp(){
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
+    }
+
+    // reset all values
+    public void resetAll()
+    {
+      num = 0;
+      scoreScript.resetScore();
+      infectionB.resetBar();
+      score = 1;
     }
 
 }

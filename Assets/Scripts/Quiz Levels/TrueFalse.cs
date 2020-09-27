@@ -184,6 +184,7 @@ public class TrueFalse : MonoBehaviour
       }
     }
 
+    // switch button color to purple
     void switchPurple()
     {
       switch(checkNumber)
@@ -199,12 +200,22 @@ public class TrueFalse : MonoBehaviour
       }
     }
 
+    // show correct UI
     void correctPopUp(){
       popUp = Instantiate(correctUI, transform.position, Quaternion.identity) as GameObject;
     }
 
+    // show incorrect UI
     void incorrectPopUp(){
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
+    }
+
+    // reset all values
+    public void resetAll()
+    {
+      num = 0;
+      scoreScript.resetScore();
+      infectionB.resetBar();
     }
 
 }

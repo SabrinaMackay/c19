@@ -37,4 +37,11 @@ public class Score : MonoBehaviour
 
     // Get community Score
     public int getCommunityScore(){return community;}
+
+    // reset score
+    public void resetScore()
+    {
+      personal = 0;
+      community = 0;
+    }
 }

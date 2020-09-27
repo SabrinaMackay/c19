@@ -35,4 +35,10 @@ public class InfectionBar : MonoBehaviour
 		return result;
 	}
 
+	// reset
+	public void resetBar()
+	{
+		slider.value = 0;
+	}
+
 }
