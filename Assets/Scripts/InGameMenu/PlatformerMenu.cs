@@ -53,8 +53,6 @@ public class PlatformerMenu : MonoBehaviour
     // Restart method
     void Restart()
     {
-      // levelScript.resetAll();
-      // Resume();
       SceneManager.LoadScene("SampleScene");
     }
 
@@ -68,7 +66,7 @@ public class PlatformerMenu : MonoBehaviour
     // Exit method
     void Exit()
     {
-
+      SceneManager.LoadScene("MainMenu");
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InGameMenuScript : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class InGameMenuScript : MonoBehaviour
     // Exit method
     void Exit()
     {
-
+      SceneManager.LoadScene("MainMenu");
     }
 
 }
