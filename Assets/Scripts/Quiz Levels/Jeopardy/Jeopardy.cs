@@ -132,11 +132,11 @@ public class Jeopardy : MonoBehaviour
             num++;
 
         }
-        // if(num>=4){
-        //     SceneManager.LoadScene (sceneName:"SampleScene");
-        // }
 
-        //Four Questions will be displayed in then there will be a transition to the next scene
+        // load platformer level
+        if(num>=4){
+            SceneManager.LoadScene (sceneName:"SampleScene");
+        }
 
     }
 

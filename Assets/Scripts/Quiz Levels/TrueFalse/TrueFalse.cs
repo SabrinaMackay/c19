@@ -146,9 +146,11 @@ public class TrueFalse : MonoBehaviour
             num++;
 
         }
-        // if(num>=4){
-        //     SceneManager.LoadScene (sceneName:"SampleScene");
-        // }
+
+        // load next level (Jeopardy)
+        if(num>=4){
+            SceneManager.LoadScene (sceneName:"Jeopardy3");
+        }
 
         //Four Questions will be displayed in then there will be a transition to the next scene
 
