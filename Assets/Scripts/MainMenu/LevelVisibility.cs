@@ -34,14 +34,16 @@ public class LevelVisibility : MonoBehaviour
     		case 1:
     			level2.interactable = true;
     			//The scenes will be switched
-    			//SceneManager.LoadScene (sceneName:"SingleChoice1");
+    			SceneManager.LoadScene (sceneName:"SingleChoice1");
     			break;
     		case 2:
     			level3.interactable = true;
     			// add code to switch scene
+                SceneManager.LoadScene (sceneName:"TrueFalse2");
     			break;
     		case 3:
     			level4.interactable = true;
+                SceneManager.LoadScene (sceneName:"Jeoprady3");
     			// add code to switch scene
     			break;
     		case 4:
