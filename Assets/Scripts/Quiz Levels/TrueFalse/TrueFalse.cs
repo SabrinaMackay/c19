@@ -41,6 +41,8 @@ public class TrueFalse : MonoBehaviour
     //score tally
     public int score = 1;
 
+    private int correctAnswer;
+
 
     void Start()
     {
@@ -76,6 +78,8 @@ public class TrueFalse : MonoBehaviour
         option1.text = (string)displayQuestion[1];
         Text option2 = GameObject.Find("Quiz UI/Solutions/False/Text").GetComponent<Text>();
         option2.text = (string)displayQuestion[2];
+
+        correctAnswer = int.Parse((string)displayQuestion[3]);
     }
 
     void ChosenAnswer(int number)
@@ -84,7 +88,7 @@ public class TrueFalse : MonoBehaviour
 
         checkNumber = number;
         //switch checks if answer was correct and displays the corresponding screen
-        if(number == int.Parse((string)displayQuestion[3]))
+        if(number == correctAnswer)
         {
             // change colour of selected option
             switchGreen();
@@ -149,7 +153,7 @@ public class TrueFalse : MonoBehaviour
 
         // load next level (Jeopardy)
         if(num>=4){
-            SceneManager.LoadScene (sceneName:"Jeopardy3");
+            SceneManager.LoadScene (sceneName:"MainMenu");
         }
 
         //Four Questions will be displayed in then there will be a transition to the next scene
@@ -210,6 +214,8 @@ public class TrueFalse : MonoBehaviour
     // show incorrect UI
     void incorrectPopUp(){
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
     }
 
     // reset all values

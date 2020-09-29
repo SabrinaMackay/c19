@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SingleChoice : MonoBehaviour
 {
     //Possible questions and their answers
-    public ArrayList question1 = new ArrayList() { "Add question 1 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4" ,"3"};
+    public ArrayList question1 = new ArrayList() { "Add question 1 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4" ,"1"};
   	public ArrayList question2 = new ArrayList() { "Add question 2 here, Correct answer is 2. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4", "2" };
   	public ArrayList question3 = new ArrayList() { "Add question 3 here, Correct answer is 4. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4","4"};
   	public ArrayList question4 = new ArrayList() { "Add question 4 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4","3"};
@@ -40,6 +40,8 @@ public class SingleChoice : MonoBehaviour
 
     //score tally
     public int score = 1;
+
+    private int correctAnswer;
 
 
     void Start()
@@ -82,16 +84,17 @@ public class SingleChoice : MonoBehaviour
         Text option4 = GameObject.Find("Quiz UI/Solutions/BottomRight Sol/Text").GetComponent<Text>();
         option4.text = (string)displayQuestion[4];
 
+        //index of the correct answer
+        correctAnswer = int.Parse((string)displayQuestion[5]);
         // Debug.Log("num value: "+num);
     }
 
     void ChosenAnswer(int number)
     {
         currentHealth = infectionB.getHealth();//get the current value of the health bar
-
         checkNumber = number;
         //switch checks if answer was correct and displays the corresponding screen
-        if(number == int.Parse((string)displayQuestion[5]))
+        if(number == correctAnswer)
         {
             // change colour of selected option
             switchGreen();
@@ -167,7 +170,8 @@ public class SingleChoice : MonoBehaviour
 
         // Load the next level (true or false)
         if(num>=4){
-            SceneManager.LoadScene (sceneName:"TrueFalse2");
+
+            SceneManager.LoadScene (PlayerPrefs.GetInt("SavedScene"));
         }
 
     }
@@ -246,9 +250,13 @@ public class SingleChoice : MonoBehaviour
 
     // show incorrect UI
     void incorrectPopUp(){
+      
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
+      //Destroy(gameObject, 2f);
     }
-
+    
     // reset all values
     public void resetAll()
     {

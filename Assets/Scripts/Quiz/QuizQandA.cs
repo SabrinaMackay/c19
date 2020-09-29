@@ -29,10 +29,12 @@ public class QuizQandA : MonoBehaviour
     public GameObject QuizUI;
 
     //counter to check the question number
-    private int num =0;
+    private int num = 0;
 
     //score tally
     public int score = 1;
+
+    private int correctAnswer;
 
     void Start()
     {
@@ -46,14 +48,19 @@ public class QuizQandA : MonoBehaviour
 
     void Update(){
         //changes the possible question based on the 'num' value
+        
         switch(num){
-            case 0: displayQuestion = question1;
+            case 0: 
+
+                    displayQuestion = question1;
                     break;
             case 1: displayQuestion = question2;
                     break;
             case 2: displayQuestion = question3;
                     break;
             case 3: displayQuestion = question4;
+                    break;
+            case 4: SceneManager.LoadScene (sceneName:"SampleScene");
                     break;
         }
         //Displays the question
@@ -70,13 +77,16 @@ public class QuizQandA : MonoBehaviour
         Text option4 = GameObject.Find("QuizContainer/Background/ContentContainer/AnswersContainer/Option4/Button/Text").GetComponent<Text>();
         option4.text = (string)displayQuestion[4];
 
+        //index of the correct answer
+        correctAnswer = int.Parse((string)displayQuestion[5]);
 
     }
 
     void ChosenAnswer(int number)
     {
+        print("Counter: "+num);
         //switch checks if answer was correct and displays the corresponding screen
-        if(number == int.Parse((string)displayQuestion[5]))
+        if(number == correctAnswer)
         {
             correctUI.SetActive(true);
             btnCorrect.onClick.AddListener(backToQuiz);
@@ -84,11 +94,15 @@ public class QuizQandA : MonoBehaviour
             }
         else
         {
+            
             incorrectUI.SetActive(true);
+            Text ans = GameObject.Find("IncorrectAnsContainer/Background/AnswerText").GetComponent<Text>();
+            ans.text = "Answer: \n" +(string)displayQuestion[correctAnswer];
             btnIncorrect.onClick.AddListener(backToQuiz);
 
 
         }
+        /*
         switch (num)
         {
             case 0:
@@ -116,7 +130,7 @@ public class QuizQandA : MonoBehaviour
                 }
                 break;
         }
-
+        */
         //Output this to console when Button1 or Button3 is clicked
         Debug.Log($"You have clicked the button {number}!");
     }
@@ -129,9 +143,7 @@ public class QuizQandA : MonoBehaviour
             correctUI.SetActive(false);
             incorrectUI.SetActive(false);
         }
-        if(num>=4){
-            SceneManager.LoadScene (sceneName:"SampleScene");
-        }
+        
 
         //Four Questions will be displayed in then there will be a transition to the next scene
 

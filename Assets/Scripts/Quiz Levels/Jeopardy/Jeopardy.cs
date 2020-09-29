@@ -41,6 +41,8 @@ public class Jeopardy : MonoBehaviour
     //score tally
     public int score = 1;
 
+    private int correctAnswer;
+
 
     void Start()
     {
@@ -79,6 +81,7 @@ public class Jeopardy : MonoBehaviour
         Text option3 = GameObject.Find("Quiz UI/Solutions/BottomLeft Sol/Text").GetComponent<Text>();
         option3.text = (string)displayQuestion[3];
 
+        correctAnswer = int.Parse((string)displayQuestion[4]);
         // Debug.Log("num value: "+num);
     }
 
@@ -89,7 +92,7 @@ public class Jeopardy : MonoBehaviour
         checkNumber = number;
 
         //switch checks if answer was correct and displays the corresponding screen
-        if(number == int.Parse((string)displayQuestion[4]))
+        if(number == correctAnswer)
         {
             // change colour of selected option
             switchGreen();
@@ -135,7 +138,7 @@ public class Jeopardy : MonoBehaviour
 
         // load platformer level
         if(num>=4){
-            SceneManager.LoadScene (sceneName:"SampleScene");
+            SceneManager.LoadScene (sceneName:"MainMenu");
         }
 
     }
@@ -206,6 +209,8 @@ public class Jeopardy : MonoBehaviour
     // show incorrect UI
     void incorrectPopUp(){
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
     }
 
     // reset all values
