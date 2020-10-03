@@ -60,7 +60,8 @@ public class SingleChoice : MonoBehaviour
 
     void Update(){
         //changes the possible question based on the 'num' value
-        switch(num){
+        switch(num)
+        {
             case 0: displayQuestion = question1;
                     break;
             case 1: displayQuestion = question2;
@@ -250,13 +251,13 @@ public class SingleChoice : MonoBehaviour
 
     // show incorrect UI
     void incorrectPopUp(){
-      
+
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
       Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
       ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
       //Destroy(gameObject, 2f);
     }
-    
+
     // reset all values
     public void resetAll()
     {
