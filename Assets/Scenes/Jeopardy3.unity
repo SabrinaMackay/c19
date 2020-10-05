@@ -2338,6 +2338,7 @@ GameObject:
   - component: {fileID: 2020393090}
   - component: {fileID: 2020393089}
   - component: {fileID: 2020393093}
+  - component: {fileID: 2020393088}
   m_Layer: 5
   m_Name: Quiz UI
   m_TagString: Untagged
@@ -2345,6 +2346,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2020393088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020393087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347a3d0f5ae95d34fb71523047f3826f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level2: 0
+  level3: 0
+  level4: 0
 --- !u!114 &2020393089
 MonoBehaviour:
   m_ObjectHideFlags: 0

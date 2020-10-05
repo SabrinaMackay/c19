@@ -43,6 +43,9 @@ public class Jeopardy : MonoBehaviour
 
     private int correctAnswer;
 
+    // storage script
+    Level levelScript;
+
 
     void Start()
     {
@@ -55,6 +58,8 @@ public class Jeopardy : MonoBehaviour
         scoreScript = GameObject.Find("Quiz UI/Scores").GetComponent<Score>();
         infectionB = GameObject.Find("Quiz UI/InfectionBarContainer/HealthBar").GetComponent<InfectionBar>();
 
+        // access storage script
+        levelScript = GameObject.Find("Quiz UI").GetComponent<Level>();
     }
 
     void Update(){
@@ -131,13 +136,15 @@ public class Jeopardy : MonoBehaviour
 
         switchPink();
 
-        if (num < 4){
+        if (num < 4)
+        {
             num++;
-
         }
 
-        // load platformer level
-        if(num>=4){
+        // unlcok platformer level
+        if(num>=4)
+        {
+            levelScript.unlockAndSaveLevel(true, true, true);
             SceneManager.LoadScene (sceneName:"MainMenu");
         }
 

@@ -2443,6 +2443,7 @@ GameObject:
   - component: {fileID: 1444327574}
   - component: {fileID: 1444327573}
   - component: {fileID: 1444327577}
+  - component: {fileID: 1444327578}
   m_Layer: 5
   m_Name: Levels
   m_TagString: Untagged
@@ -2550,6 +2551,21 @@ MonoBehaviour:
   level3: {fileID: 1783314667}
   level4: {fileID: 1430945925}
   avatar: {fileID: 0}
+--- !u!114 &1444327578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444327572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347a3d0f5ae95d34fb71523047f3826f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level2: 0
+  level3: 0
+  level4: 0
 --- !u!1001 &1509777878
 PrefabInstance:
   m_ObjectHideFlags: 0

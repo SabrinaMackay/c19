@@ -22,7 +22,7 @@ public static class LevelManager
     // load level data
     public static LevelData LoadLevel()
     {
-      string path = Application.persistentDataPath + "LevelManager.bin";
+      string path = Application.persistentDataPath + "/LevelManager.bin";
 
       if(File.Exists(path))
       {

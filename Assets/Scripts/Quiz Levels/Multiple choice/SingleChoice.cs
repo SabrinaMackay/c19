@@ -43,6 +43,9 @@ public class SingleChoice : MonoBehaviour
 
     private int correctAnswer;
 
+    // storage script
+    Level levelScript;
+
 
     void Start()
     {
@@ -55,6 +58,9 @@ public class SingleChoice : MonoBehaviour
         // access score Script
         scoreScript = GameObject.Find("Quiz UI/Scores").GetComponent<Score>();
         infectionB = GameObject.Find("Quiz UI/InfectionBarContainer/HealthBar").GetComponent<InfectionBar>();
+
+        // storage script
+        levelScript = GameObject.Find("Quiz UI").GetComponent<Level>();
 
     }
 
@@ -164,14 +170,15 @@ public class SingleChoice : MonoBehaviour
 
         switchBlue();
 
-        if (num < 4){
+        if (num < 4)
+        {
             num++;
-
         }
 
-        // Load the next level (true or false)
-        if(num>=4){
-
+        // End of level. Unlock 2nd level
+        if(num>=4)
+        {
+            levelScript.unlockAndSaveLevel(true, false, false);
             SceneManager.LoadScene (PlayerPrefs.GetInt("SavedScene"));
         }
 

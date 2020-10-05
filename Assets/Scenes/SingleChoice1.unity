@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 20566091}
   - component: {fileID: 20566090}
   - component: {fileID: 20566094}
+  - component: {fileID: 20566095}
   m_Layer: 5
   m_Name: Quiz UI
   m_TagString: Untagged
@@ -249,6 +250,21 @@ MonoBehaviour:
     type: 3}
   currentHealth: 0
   score: 1
+--- !u!114 &20566095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20566089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347a3d0f5ae95d34fb71523047f3826f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level2: 0
+  level3: 0
+  level4: 0
 --- !u!1 &28694519
 GameObject:
   m_ObjectHideFlags: 0

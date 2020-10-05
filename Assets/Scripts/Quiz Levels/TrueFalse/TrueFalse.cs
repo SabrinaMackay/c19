@@ -43,6 +43,9 @@ public class TrueFalse : MonoBehaviour
 
     private int correctAnswer;
 
+    // storage Script
+    Level levelScript;
+
 
     void Start()
     {
@@ -54,6 +57,9 @@ public class TrueFalse : MonoBehaviour
         // access score Script
         scoreScript = GameObject.Find("Quiz UI/Scores").GetComponent<Score>();
         infectionB = GameObject.Find("Quiz UI/InfectionBarContainer/HealthBar").GetComponent<InfectionBar>();
+
+        // access storage script
+        levelScript = GameObject.Find("Quiz UI").GetComponent<Level>();
 
     }
 
@@ -121,23 +127,6 @@ public class TrueFalse : MonoBehaviour
             Invoke("backToQuiz", 2);
         }
 
-        // switch (num)
-        // {
-        //     case 0:
-        //         if (number == 1)
-        //         {
-        //             score += 1;
-        //         }
-        //         break;
-        //     case 1:
-        //         if (number == 2)
-        //         {
-        //             score += 1;
-        //         }
-        //         break;
-        //
-        // }
-
         //Output this to console when Button1 or Button3 is clicked
         Debug.Log($"You have clicked the button {number}!");
     }
@@ -146,13 +135,15 @@ public class TrueFalse : MonoBehaviour
 
         switchPurple();
 
-        if (num < 4){
+        if (num < 4)
+        {
             num++;
-
         }
 
-        // load next level (Jeopardy)
-        if(num>=4){
+        // unlock 3rd level (Jeopardy)
+        if(num>=4)
+        {
+            levelScript.unlockAndSaveLevel(true, true, false);
             SceneManager.LoadScene (sceneName:"MainMenu");
         }
 
