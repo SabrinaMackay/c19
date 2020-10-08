@@ -7,12 +7,17 @@ using UnityEngine.SceneManagement;
 public class SingleChoice : MonoBehaviour
 {
     //Possible questions and their answers
-    public ArrayList question1 = new ArrayList() { "Add question 1 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4" ,"1"};
-  	public ArrayList question2 = new ArrayList() { "Add question 2 here, Correct answer is 2. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4", "2" };
-  	public ArrayList question3 = new ArrayList() { "Add question 3 here, Correct answer is 4. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4","4"};
-  	public ArrayList question4 = new ArrayList() { "Add question 4 here, Correct answer is 3. What is your question? Is it community or personal score based?", "Option 1", "Option 2", "Option 3", "Option 4","3"};
-    public ArrayList question5 = new ArrayList() { "Add question 5 here, Correct answer is 1. What is your question? Is it community or personal score based?", "BootyEater69", "Option 2", "Option 3", "Option 4", "1"};
-
+    public ArrayList question1 = new ArrayList() { "For how long is a person infectious?", "One month", "Up to two weeks", "Two to Three days", "One week" ,"2"};
+    public ArrayList question2 = new ArrayList() { "What areas should your mask cover?", "Your mouth and nose", "Just your mouth", "Your mouth, nose and chin", "You should not wear a mask", "3" };
+    public ArrayList question3 = new ArrayList() { "How often should you wash your fabric mask?", "Everyday after use", "Once a week", "Every two to three days", "Bi-weekly","1"};
+    public ArrayList question4 = new ArrayList() { "What situation would require you to change your mask throughout the day?", "When you want a different pattern design on the front of your mask", "When your mask is wet or soiled.", "You should not change your mask", "None of the above","2"};
+    public ArrayList question5 = new ArrayList() { "Which of the following is not a symptom of COVID-19?\n Fever, Cough, shortness of breath, fatigue, body aches, vision loss, loss of smell or taste, sore throat, nausea, diarrhea, congestion or a headache.", "Nausea", "Vision loss", "Congestion", "Fever", "2"};
+    public ArrayList question6 = new ArrayList() { "What is the minimum alcohol content that a hand sanitizer should have?", "60% if its ethanol,  70% if its isopropyl alcohol.", "50% if its ethanol,  60% if its isopropyl alcohol.", "40% if its ethanol,  30% if its isopropyl alcohol.", "30% if its ethanol,  40% if its isopropyl alcohol." ,"1"};
+    public ArrayList question7 = new ArrayList() { "Once your mask is on, how should you remove or adjust it?", "Only from the mask's strings", "Only touching the front on the mask", "Only touching the edges of the mask", "None of the above" ,"1"};
+    public ArrayList question8 = new ArrayList() { "How many layers should an ideal fabric mask have?", "Three-layers of the same fabric", "Two-layers: an outer layer and an inner layer", "One layer", "Three-layers: an outer layer, inner layer and middle/filter layer" ,"4"};
+    public ArrayList question9 = new ArrayList() { "What is the purpose of the outer layer of an ideal fabric mask", "It repels droplets and moisture", "Absorb droplets from your exhaled breath", "To make the mask fashionable", "It absorbs droplets and moisture" ,"1"};
+    public ArrayList question10 = new ArrayList() { "What is the purpose of the inner layer of an ideal fabric mask?", "It repels droplets and moisture", "Absorb droplets from your exhaled breath", "To make the mask fashionable", "It absorbs droplets and moisture" ,"2"};
+    
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion = new ArrayList();
 
@@ -66,8 +71,7 @@ public class SingleChoice : MonoBehaviour
 
     void Update(){
         //changes the possible question based on the 'num' value
-        switch(num)
-        {
+        switch(num){
             case 0: displayQuestion = question1;
                     break;
             case 1: displayQuestion = question2;
@@ -75,6 +79,20 @@ public class SingleChoice : MonoBehaviour
             case 2: displayQuestion = question3;
                     break;
             case 3: displayQuestion = question4;
+                    break;
+            case 4: displayQuestion = question4;
+                    break;
+            case 5: displayQuestion = question4;
+                    break;
+            case 6: displayQuestion = question4;
+                    break;
+            case 7: displayQuestion = question4;
+                    break;
+            case 8: displayQuestion = question4;
+                    break;
+            case 9: displayQuestion = question4;
+                    break;
+            case 10: displayQuestion = question4;
                     break;
         }
         //Displays the question
@@ -170,13 +188,13 @@ public class SingleChoice : MonoBehaviour
 
         switchBlue();
 
-        if (num < 4)
+        if (num < 10)
         {
             num++;
         }
 
         // End of level. Unlock 2nd level
-        if(num>=4)
+        if(num>=10)
         {
             levelScript.unlockAndSaveLevel(true, false, false);
             SceneManager.LoadScene (PlayerPrefs.GetInt("SavedScene"));

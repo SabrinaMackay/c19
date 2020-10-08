@@ -7,11 +7,17 @@ using UnityEngine.SceneManagement;
 public class TrueFalse : MonoBehaviour
 {
     //Possible questions and their answers
-    public ArrayList question1 = new ArrayList() { "Add True or False Statement here.", "True", "False" , "1"};
-  	public ArrayList question2 = new ArrayList() { "Add True or False Statement here.", "True", "False" , "0"};
-  	public ArrayList question3 = new ArrayList() { "Add True or False Statement here.", "True", "False" ,"1"};
-  	public ArrayList question4 = new ArrayList() { "Add True or False Statement here.", "True", "False" ,"0"};
-    public ArrayList question5 = new ArrayList() { "Add True or False Statement here.", "True", "False" ,"1"};
+    public ArrayList question1 = new ArrayList() { "Your mask should be loose on your face.", "True", "False" , "1"};
+  	public ArrayList question2 = new ArrayList() { "Wearing a mask prevent you from being infected.", "True", "False" , "1"};
+  	public ArrayList question3 = new ArrayList() { "Thermal scanners cannot detect COVID-19.", "True", "False" ,"0"};
+  	public ArrayList question4 = new ArrayList() { "Exposing yourself to the sun decreases your chances of getting COVID-19.", "True", "False" ,"1"};
+    public ArrayList question5 = new ArrayList() { "UV lamps should be used to disinfect your hands or other areas of your body.", "True", "False" ,"1"};
+    public ArrayList question6 = new ArrayList() { "You no longer pose a threat to others once you have completed quarantine and you are symptom free for more than 72 hours.", "True", "False" ,"0"};
+    public ArrayList question7 = new ArrayList() { "You can always tell if someone has COVID-19.", "True", "False" ,"1"};
+    public ArrayList question8 = new ArrayList() { "COVID-19 and SARS are the same virus.", "True", "False" ,"1"};
+    public ArrayList question9 = new ArrayList() { "This is no vaccine or cure currently for COVID-19.", "True", "False" ,"0"};
+    public ArrayList question10 = new ArrayList() { "There is no difference between being isolated and being quarantined.", "True", "False" ,"1"};
+    
 
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion = new ArrayList();
@@ -74,7 +80,22 @@ public class TrueFalse : MonoBehaviour
                     break;
             case 3: displayQuestion = question4;
                     break;
+            case 4: displayQuestion = question4;
+                    break;
+            case 5: displayQuestion = question4;
+                    break;
+            case 6: displayQuestion = question4;
+                    break;
+            case 7: displayQuestion = question4;
+                    break;
+            case 8: displayQuestion = question4;
+                    break;
+            case 9: displayQuestion = question4;
+                    break;
+            case 10: displayQuestion = question4;
+                    break;
         }
+
         //Displays the question
         Text questionObj = GameObject.Find("Quiz UI/Question Box/Text").GetComponent<Text>();
         questionObj.text = (string)displayQuestion[0];
@@ -135,13 +156,13 @@ public class TrueFalse : MonoBehaviour
 
         switchPurple();
 
-        if (num < 4)
+        if (num < 10)
         {
             num++;
         }
 
         // unlock 3rd level (Jeopardy)
-        if(num>=4)
+        if(num>=10)
         {
             levelScript.unlockAndSaveLevel(true, true, false);
             SceneManager.LoadScene (sceneName:"MainMenu");

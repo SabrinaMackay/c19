@@ -2550,7 +2550,7 @@ MonoBehaviour:
   level2: {fileID: 971894437}
   level3: {fileID: 1783314667}
   level4: {fileID: 1430945925}
-  avatar: {fileID: 0}
+  avatar: {fileID: 705867476}
 --- !u!114 &1444327578
 MonoBehaviour:
   m_ObjectHideFlags: 0
