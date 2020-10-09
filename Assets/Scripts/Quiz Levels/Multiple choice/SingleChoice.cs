@@ -28,6 +28,10 @@ public class SingleChoice : MonoBehaviour
     public Button ans1, ans2, ans3, ans4;
     private int checkNumber;
 
+    // level failed UI buttons
+    private Button restart;
+    private Button exit;
+
     //Correct and Incorrect Canvas
     public GameObject correctUI;
     public GameObject incorrectUI;
@@ -309,6 +313,10 @@ public class SingleChoice : MonoBehaviour
     void levelFailedPopUp()
     {
       popUp = Instantiate(levelFailedUI, transform.position, Quaternion.identity) as GameObject;
+      restart = GameObject.Find("levelFailedUI(Clone)/Buttons/Restart").GetComponent<Button>();
+      exit = GameObject.Find("levelFailedUI(Clone)/Buttons/Exit").GetComponent<Button>();
+      restart.onClick.AddListener(delegate {Restart(); });
+      exit.onClick.AddListener(delegate {Exit(); });
     }
 
     // reset all values
@@ -317,6 +325,25 @@ public class SingleChoice : MonoBehaviour
       num = 0;
       scoreScript.resetScore();
       infectionB.resetBar();
+    }
+
+
+
+    // level failed functions
+
+    // Restart method
+    void Restart()
+    {
+      resetAll();
+      switchBlue();
+      // need to destroy UI
+      Destroy(popUp);
+    }
+
+    // Exit method
+    void Exit()
+    {
+      SceneManager.LoadScene("MainMenu");
     }
 
 }
