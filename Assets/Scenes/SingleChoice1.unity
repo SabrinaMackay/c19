@@ -2619,12 +2619,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question Box
       objectReference: {fileID: 0}
+    - target: {fileID: 8940217610065010965, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.025
+      objectReference: {fileID: 0}
     - target: {fileID: 8940217610065011050, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
         type: 3}
       propertyPath: m_Text
       value: '
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940217610065011050, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1b857bf569c0c4a8f3b300a415b3d5, type: 3}

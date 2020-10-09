@@ -1780,7 +1780,7 @@ PrefabInstance:
     - target: {fileID: 8940217610042721124, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -53
+      value: -45.218
       objectReference: {fileID: 0}
     - target: {fileID: 8940217610042721124, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
         type: 3}
@@ -1822,6 +1822,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8940217610042721124, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940217610042721124, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940217610042721124, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8940217610042721125, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
         type: 3}
       propertyPath: m_Color.r
@@ -1842,12 +1857,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question Box
       objectReference: {fileID: 0}
+    - target: {fileID: 8940217610065010965, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940217610065010965, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940217610065010965, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 84.9088
+      objectReference: {fileID: 0}
     - target: {fileID: 8940217610065011050, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
         type: 3}
       propertyPath: m_Text
       value: '
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940217610065011050, guid: 1e1b857bf569c0c4a8f3b300a415b3d5,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1b857bf569c0c4a8f3b300a415b3d5, type: 3}
@@ -1889,7 +1924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -83}
+  m_AnchoredPosition: {x: -2, y: -87}
   m_SizeDelta: {x: 420, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1854005949

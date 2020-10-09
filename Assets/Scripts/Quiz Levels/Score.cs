@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      personalUI.text = "Personal Score: "+personal+"/5";
+      personalUI.text = "Personal Score: "+personal+"/10";
       communityUI.text = "Community Score: "+community+"/5";
     }
 
