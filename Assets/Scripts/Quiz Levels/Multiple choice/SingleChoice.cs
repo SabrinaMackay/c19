@@ -173,7 +173,6 @@ public class SingleChoice : MonoBehaviour
             }else
             {
               Invoke("levelFailedPopUp", 2);
-              // resetAll();
             }
 
         }

@@ -29,9 +29,14 @@ public class TrueFalse : MonoBehaviour
     public Button ans1, ans2;
     private int checkNumber;
 
+    // level failed UI buttons
+    private Button restart;
+    private Button exit;
+
     //Correct and Incorrect Canvas
     public GameObject correctUI;
     public GameObject incorrectUI;
+    public GameObject levelFailedUI;
     private GameObject popUp;
 
     // default colour for the possible answers
@@ -146,18 +151,25 @@ public class TrueFalse : MonoBehaviour
         }
         else
         {
-            // change colour of selected option
-            switchRed();
+          // change colour of selected option
+          switchRed();
 
-            // increase infection bar by 20
-            currentHealth += 33;
-            infectionB.SetHealth(currentHealth);
+          // increase infection bar by 20
+          currentHealth += 33;
+          infectionB.SetHealth(currentHealth);
 
-            // display incorrect popup
-            Invoke("incorrectPopUp", 0.5f);
+          // display incorrect pop
+          Invoke("incorrectPopUp", 0.5f);
 
+          if(currentHealth < 90)
+          {
             // display next quiz question
             Invoke("backToQuiz", 2);
+
+          }else
+          {
+            Invoke("levelFailedPopUp", 2);
+          }
         }
 
         //Output this to console when Button1 or Button3 is clicked
@@ -248,6 +260,33 @@ public class TrueFalse : MonoBehaviour
       num = 0;
       scoreScript.resetScore();
       infectionB.resetBar();
+    }
+
+    // level failed popUp
+    void levelFailedPopUp()
+    {
+      popUp = Instantiate(levelFailedUI, transform.position, Quaternion.identity) as GameObject;
+      restart = GameObject.Find("levelFailedUI(Clone)/Buttons/Restart").GetComponent<Button>();
+      exit = GameObject.Find("levelFailedUI(Clone)/Buttons/Exit").GetComponent<Button>();
+      restart.onClick.AddListener(delegate {Restart(); });
+      exit.onClick.AddListener(delegate {Exit(); });
+    }
+
+    // level failed functions
+
+    // Restart method
+    void Restart()
+    {
+      resetAll();
+      switchPurple();
+      // need to destroy UI
+      Destroy(popUp);
+    }
+
+    // Exit method
+    void Exit()
+    {
+      SceneManager.LoadScene("MainMenu");
     }
 
 }

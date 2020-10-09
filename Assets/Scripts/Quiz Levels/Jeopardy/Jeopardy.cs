@@ -20,9 +20,14 @@ public class Jeopardy : MonoBehaviour
     public Button ans1, ans2, ans3;
     private int checkNumber;
 
+    // level failed UI buttons
+    private Button restart;
+    private Button exit;
+
     //Correct and Incorrect Canvas
     public GameObject correctUI;
     public GameObject incorrectUI;
+    public GameObject levelFailedUI;
     private GameObject popUp;
 
     // default colour for the possible answers
@@ -99,35 +104,49 @@ public class Jeopardy : MonoBehaviour
         //switch checks if answer was correct and displays the corresponding screen
         if(number == correctAnswer)
         {
-            // change colour of selected option
-            switchGreen();
+          // change colour of selected option
+          switchGreen();
 
-            // display correct UI
-            Invoke("correctPopUp",0.5f);
+          // display correct UI
+          Invoke("correctPopUp",0.5f);
 
-            // add to score. 1st argument is personal 2nd is community
-            // I need to have knowledge of the type of q's asked first so i can
-            // decide which q is suitable for either the personal or community score.
-            // For now, I'm only adding to both scores for a correct answer.
+          // add to score. 1st argument is personal 2nd is community
+          if(string.Equals(displayQuestion[4], "both"))
+          {
             scoreScript.setScore(1,1);
+          }
+          else if(string.Equals(displayQuestion[4], "pers"))
+          {
+            scoreScript.setScore(1,0);
+          }else
+          {
+            scoreScript.setScore(0,1);
+          }
 
-            // display quiz
-            Invoke("backToQuiz", 2);
+          // display quiz
+          Invoke("backToQuiz", 2);
         }
         else
         {
-            // change colour of selected option
-            switchRed();
+          // change colour of selected option
+          switchRed();
 
-            // increase infection bar by 20
-            currentHealth += 33;
-            infectionB.SetHealth(currentHealth);
+          // increase infection bar by 20
+          currentHealth += 33;
+          infectionB.SetHealth(currentHealth);
 
-            // display incorrect pop
-            Invoke("incorrectPopUp", 0.5f);
+          // display incorrect pop
+          Invoke("incorrectPopUp", 0.5f);
 
+          if(currentHealth < 90)
+          {
             // display next quiz question
             Invoke("backToQuiz", 2);
+
+          }else
+          {
+            Invoke("levelFailedPopUp", 2);
+          }
         }
 
     }
@@ -227,6 +246,33 @@ public class Jeopardy : MonoBehaviour
       scoreScript.resetScore();
       infectionB.resetBar();
       score = 1;
+    }
+
+    // level failed popUp
+    void levelFailedPopUp()
+    {
+      popUp = Instantiate(levelFailedUI, transform.position, Quaternion.identity) as GameObject;
+      restart = GameObject.Find("levelFailedUI(Clone)/Buttons/Restart").GetComponent<Button>();
+      exit = GameObject.Find("levelFailedUI(Clone)/Buttons/Exit").GetComponent<Button>();
+      restart.onClick.AddListener(delegate {Restart(); });
+      exit.onClick.AddListener(delegate {Exit(); });
+    }
+
+    // level failed functions
+
+    // Restart method
+    void Restart()
+    {
+      resetAll();
+      switchPink();
+      // need to destroy UI
+      Destroy(popUp);
+    }
+
+    // Exit method
+    void Exit()
+    {
+      SceneManager.LoadScene("MainMenu");
     }
 
 }

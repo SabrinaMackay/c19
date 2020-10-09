@@ -687,6 +687,8 @@ MonoBehaviour:
     type: 3}
   incorrectUI: {fileID: 5153952299860649391, guid: efeab8a9fdb39464f9d38a7f2a1b8f31,
     type: 3}
+  levelFailedUI: {fileID: 616112745050634036, guid: b4d0ecb83b1a4d640bfd33c3c04919dd,
+    type: 3}
   currentHealth: 0
   score: 1
 --- !u!1 &982581351
