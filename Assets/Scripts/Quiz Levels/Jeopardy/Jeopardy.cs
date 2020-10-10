@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 public class Jeopardy : MonoBehaviour
 {
     //Possible questions and their answers
-    public ArrayList question1 = new ArrayList() { "You should seek emergency medical care.", "What should you do if you develop a serious cough?", "What should you do after going to the mall?", "What should you if you wear an unwashed mask?" ,"1"};
-  	public ArrayList question2 = new ArrayList() { "It protects those around you, from you.", "Why should you wash your mask?", "Why should you sanitize your hands?", "What does wearing a mask do?" ,"3" };
-  	public ArrayList question3 = new ArrayList() { "Direct contact.", "How do you get somone's attention?", "What should you avoid when around people?", "What should you do when you see your friend?" ,"2"};
-  	public ArrayList question4 = new ArrayList() { "You ought to wear a mask.", "What should you do in order to become a doctor?", "What should you do when you want to look like a superhero?", "What should you do when going out in public?" ,"3"};
-    public ArrayList question5 = new ArrayList() { "International travel", "What isn't allowed during lockdown Level 5?", "What to do when you get bored?", "What isn't allowed during lockdown level 1?" ,"1"};
-    public ArrayList question6 = new ArrayList() { "Family members should still hug.", "Which lockdown rule can be ignored?", "Family is important, therefore...", "A rule is a rule, therefore..." ,"3"};
-  	public ArrayList question7 = new ArrayList() { "Utensils can still be shared.", "Yes, but only within a household...", "Sure, they cannot pass on the virus.", "No, the virus may get passed on this way." ,"3" };
-  	public ArrayList question8 = new ArrayList() { "Teenagers' health cannot be affected by covid-19.", "What has been globally agreed upon by doctors?", "What is a common misconception about covid-19? ", "Teenagers tend to get sick less often than adults, therefore..." ,"2"};
-  	public ArrayList question9 = new ArrayList() { "All students are still required to go to school.", "Yes, education is important.", "Not really, only a subset can be allowed at one time.", "Maybe, it is the school's choice." ,"2"};
-    public ArrayList question10 = new ArrayList() { "Pure alcohol can be substituted for sanitizers.", "Yes, sanitizers are just alcohol anyway.", "Maybe, these two are more or less the same.", "No, there are different types of alcohol and not all do the same thing." ,"3"};
-    public ArrayList question11 = new ArrayList() { "Social gatherings.", "What is currently allowed under the lockdown level 5 regulations?", "A definite must do in summer.", "These must be avoided." ,"3"};
-  	public ArrayList question12 = new ArrayList() { "Only government officials are excused from adhering to the covid-19 regulations.", "Yes, they are an important group of people", "Hmm, highly possible, so maybe.", "No, no one is allowed to ignore these rules." ,"3" };
+    public ArrayList question1 = new ArrayList() { "You should seek emergency medical care.", "What should you do if you develop a serious cough?", "What should you do after going to the mall?", "What should you if you wear an unwashed mask?" ,"1", "pers"};
+  	public ArrayList question2 = new ArrayList() { "It protects those around you, from you.", "Why should you wash your mask?", "Why should you sanitize your hands?", "What does wearing a mask do?" ,"3", "com"};
+  	public ArrayList question3 = new ArrayList() { "Direct contact.", "How do you get somone's attention?", "What should you avoid when around people?", "What should you do when you see your friend?" ,"2", "both"};
+  	public ArrayList question4 = new ArrayList() { "You ought to wear a mask.", "What should you do in order to become a doctor?", "What should you do when you want to look like a superhero?", "What should you do when going out in public?" ,"3", "com"};
+    public ArrayList question5 = new ArrayList() { "International travel", "What isn't allowed during lockdown Level 5?", "What to do when you get bored?", "What isn't allowed during lockdown level 1?" ,"1", "pers"};
+    public ArrayList question6 = new ArrayList() { "Sanitizing your hands protects the people around you.", "Yes, your hands have to be clean before you can make contact.", "Maybe, but it does shield me from getting the virus.", "No, this reduces the number of microorganisms on your hands, thus reduces the chances of you leaving some on the objects you touch." ,"3","pers"};
+  	public ArrayList question7 = new ArrayList() { "Utensils can still be shared.", "Yes, but only if they are properly washed before they're used by the next person.", "Sure, they cannot pass on the virus.", "No, the virus may get passed on this way." ,"1", "both"};
+  	public ArrayList question8 = new ArrayList() { "Teenagers' health cannot be affected by covid-19.", "What has been globally agreed upon by doctors?", "What is a common misconception about covid-19? ", "Teenagers tend to get sick less often than adults, therefore..." ,"2", "pers"};
+  	public ArrayList question9 = new ArrayList() { "All students are still required to go to school.", "Yes, education is important.", "Not really, only a subset can be allowed at one time.", "Maybe, it is the school's choice." ,"2", "pers"};
+    public ArrayList question10 = new ArrayList() { "Pure alcohol can be substituted for sanitizers.", "Yes, sanitizers are just alcohol anyway.", "Maybe, these two are more or less the same.", "No, there are different types of alcohol and not all do the same thing." ,"3", "pers"};
+    public ArrayList question11 = new ArrayList() { "Social gatherings.", "What is currently allowed under the lockdown level 5 regulations?", "A definite must do in summer.", "These must be avoided." ,"3", "both"};
+  	public ArrayList question12 = new ArrayList() { "Only government officials are excused from adhering to the covid-19 regulations.", "Yes, they are an important group of people.", "Hmm, highly possible, so maybe.", "No, no one is allowed to ignore these rules." ,"3", "pers"};
 
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion = new ArrayList();
@@ -134,11 +134,11 @@ public class Jeopardy : MonoBehaviour
           Invoke("correctPopUp",0.5f);
 
           // add to score. 1st argument is personal 2nd is community
-          if(string.Equals(displayQuestion[4], "both"))
+          if(string.Equals(displayQuestion[5], "both"))
           {
             scoreScript.setScore(1,1);
           }
-          else if(string.Equals(displayQuestion[4], "pers"))
+          else if(string.Equals(displayQuestion[5], "pers"))
           {
             scoreScript.setScore(1,0);
           }else
