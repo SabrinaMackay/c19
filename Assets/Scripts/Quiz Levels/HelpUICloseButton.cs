@@ -22,7 +22,7 @@ public class HelpUICloseButton : MonoBehaviour
     void buttonClicked()
     {
       // Debug.Log("Button clicked");
-      Destroy(transform.parent.gameObject);
+      Destroy(transform.parent.parent.gameObject);
     }
 
 
