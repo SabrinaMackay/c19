@@ -12,13 +12,16 @@ public class Jeopardy : MonoBehaviour
   	public ArrayList question3 = new ArrayList() { "Direct contact.", "How do you get somone's attention?", "What should you avoid when around people?", "What should you do when you see your friend?" ,"2", "both"};
   	public ArrayList question4 = new ArrayList() { "You ought to wear a mask.", "What should you do in order to become a doctor?", "What should you do when you want to look like a superhero?", "What should you do when going out in public?" ,"3", "com"};
     public ArrayList question5 = new ArrayList() { "International travel", "What isn't allowed during lockdown Level 5?", "What to do when you get bored?", "What isn't allowed during lockdown level 1?" ,"1", "pers"};
-    public ArrayList question6 = new ArrayList() { "Sanitizing your hands protects the people around you.", "Yes, your hands have to be clean before you can make contact.", "Maybe, but it does shield me from getting the virus.", "No, this reduces the number of microorganisms on your hands, thus reduces the chances of you leaving some on the objects you touch." ,"3","pers"};
+    public ArrayList question6 = new ArrayList() { "Sanitizing your hands protects the people around you.", "Yes, your hands have to be clean before you can make contact.", "Maybe, but it does shield me from getting the virus.", "No, this reduces the number of microorganisms on your hands, thus reducing the chances of you leaving some on the objects you touch." ,"3","pers"};
   	public ArrayList question7 = new ArrayList() { "Utensils can still be shared.", "Yes, but only if they are properly washed before they're used by the next person.", "Sure, they cannot pass on the virus.", "No, the virus may get passed on this way." ,"1", "both"};
-  	public ArrayList question8 = new ArrayList() { "Teenagers' health cannot be affected by covid-19.", "What has been globally agreed upon by doctors?", "What is a common misconception about covid-19? ", "Teenagers tend to get sick less often than adults, therefore..." ,"2", "pers"};
+  	public ArrayList question8 = new ArrayList() { "Teenagers' health cannot be affected by covid-19.", "What has been globally agreed upon by doctors?", "What could be regarded as a misconception about covid-19? ", "Teenagers tend to get sick less often than adults, therefore..." ,"2", "pers"};
   	public ArrayList question9 = new ArrayList() { "All students are still required to go to school.", "Yes, education is important.", "Not really, only a subset can be allowed at one time.", "Maybe, it is the school's choice." ,"2", "pers"};
     public ArrayList question10 = new ArrayList() { "Pure alcohol can be substituted for sanitizers.", "Yes, sanitizers are just alcohol anyway.", "Maybe, these two are more or less the same.", "No, there are different types of alcohol and not all do the same thing." ,"3", "pers"};
-    public ArrayList question11 = new ArrayList() { "Social gatherings.", "What is currently allowed under the lockdown level 5 regulations?", "A definite must do in summer.", "These must be avoided." ,"3", "both"};
+    public ArrayList question11 = new ArrayList() { "Social gatherings.", "What is allowed under the lockdown level 5 regulations?", "A definite must do in summer.", "These must be avoided, or at least the number of people should be kept to a minimum." ,"3", "both"};
   	public ArrayList question12 = new ArrayList() { "Only government officials are excused from adhering to the covid-19 regulations.", "Yes, they are an important group of people.", "Hmm, highly possible, so maybe.", "No, no one is allowed to ignore these rules." ,"3", "pers"};
+
+    // canned response
+    public ArrayList responses = new ArrayList () {"Your avatar has been infected and is currently being kept in quarantine :(", " Your avatar was caught hugging his friends earlier today. ", "Due to proper lack of knowledge, your avatar thought that the reason for wearing a mask was to protect himself."};
 
     //The ArrayList thats content will be displayed on the UI
     public ArrayList displayQuestion = new ArrayList();
@@ -31,10 +34,15 @@ public class Jeopardy : MonoBehaviour
     private Button restart;
     private Button exit;
 
+    // level passed UI button
+    private Button continueButton;
+
     //Correct and Incorrect Canvas
     public GameObject correctUI;
     public GameObject incorrectUI;
     public GameObject levelFailedUI;
+    public GameObject levelCompleteUI;
+    public GameObject perfectScoreUI;
     private GameObject popUp;
 
     // default colour for the possible answers
@@ -187,7 +195,14 @@ public class Jeopardy : MonoBehaviour
         if(num>=12)
         {
             levelScript.unlockAndSaveLevel(true, true, true);
-            SceneManager.LoadScene (sceneName:"MainMenu");
+
+            if(scoreScript.getPersonalScore() == 10 && scoreScript.getCommunityScore() == 5)
+            {
+              PerfectPopUp();
+            }else
+            {
+              levelPassedPopUp();
+            }
         }
 
     }
@@ -253,12 +268,14 @@ public class Jeopardy : MonoBehaviour
     // show correct UI
     void correctPopUp(){
       popUp = Instantiate(correctUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("CorrectUI(Clone)/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
     }
 
     // show incorrect UI
     void incorrectPopUp(){
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
-      Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
+      Text ans = GameObject.Find("IncorrectUI(Clone)/AnswerText").GetComponent<Text>();
       ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
     }
 
@@ -271,10 +288,35 @@ public class Jeopardy : MonoBehaviour
       score = 1;
     }
 
+    // level passed UI
+    void levelPassedPopUp()
+    {
+      popUp = Instantiate(levelCompleteUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("LevelCompleteUI(Clone)/Text").GetComponent<Text>();
+      ans.text = "Congratulations,\nLevel Passed!\nPersonal Score: " + scoreScript.getPersonalScore() + "/10\nCommunity Score: "+scoreScript.getCommunityScore() +"/5";
+
+      continueButton = GameObject.Find("LevelCompleteUI(Clone)/ContinueButton").GetComponent<Button>();
+      continueButton.onClick.AddListener(delegate {Exit(); });
+    }
+
+    // Perfect score UI
+    void PerfectPopUp()
+    {
+      popUp = Instantiate(perfectScoreUI, transform.position, Quaternion.identity) as GameObject;
+
+      continueButton = GameObject.Find("PerfectScoreUI(Clone)/ContinueButton").GetComponent<Button>();
+      continueButton.onClick.AddListener(delegate {Exit(); });
+    }
+
     // level failed popUp
     void levelFailedPopUp()
     {
       popUp = Instantiate(levelFailedUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("levelFailedUI(Clone)/Canvas/Text").GetComponent<Text>();
+      System.Random rnd = new System.Random();
+      ans.text = "Level Failed!\n"+responses[rnd.Next(0,3)];
+
+      // Buttons
       restart = GameObject.Find("levelFailedUI(Clone)/Buttons/Restart").GetComponent<Button>();
       exit = GameObject.Find("levelFailedUI(Clone)/Buttons/Exit").GetComponent<Button>();
       restart.onClick.AddListener(delegate {Restart(); });

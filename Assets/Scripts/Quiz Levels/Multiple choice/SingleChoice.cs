@@ -32,10 +32,15 @@ public class SingleChoice : MonoBehaviour
     private Button restart;
     private Button exit;
 
+    // level passed UI button
+    private Button continueButton;
+
     //Correct and Incorrect Canvas
     public GameObject correctUI;
     public GameObject incorrectUI;
     public GameObject levelFailedUI;
+    public GameObject levelCompleteUI;
+    public GameObject perfectScoreUI;
     private GameObject popUp;
 
     // default colour for the possible answers
@@ -59,6 +64,8 @@ public class SingleChoice : MonoBehaviour
     // storage script
     Level levelScript;
 
+    // canned response
+    public ArrayList responses = new ArrayList () {"Your avatar has been infected and is currently being kept in quarantine :(", " Your avatar was caught hugging his friends earlier today. ", "Due to proper lack of knowledge, your avatar thought that the reason for wearing a mask was to protect himself."};
 
     void Start()
     {
@@ -221,8 +228,15 @@ public class SingleChoice : MonoBehaviour
         // End of level. Unlock 2nd level
         if(num>=12)
         {
-            levelScript.unlockAndSaveLevel(true, false, false);
-            SceneManager.LoadScene (PlayerPrefs.GetInt("SavedScene"));
+          levelScript.unlockAndSaveLevel(true, false, false);
+
+          if(scoreScript.getPersonalScore() == 10 && scoreScript.getCommunityScore() == 5)
+          {
+            PerfectPopUp();
+          }else
+          {
+            levelPassedPopUp();
+          }
         }
 
     }
@@ -297,21 +311,47 @@ public class SingleChoice : MonoBehaviour
     // show correct UI
     void correctPopUp(){
       popUp = Instantiate(correctUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("CorrectUI(Clone)/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
     }
 
     // show incorrect UI
     void incorrectPopUp(){
 
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
-      Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
+      Text ans = GameObject.Find("IncorrectUI(Clone)/AnswerText").GetComponent<Text>();
       ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
-      //Destroy(gameObject, 2f);
+    }
+
+    // Perfect score UI
+    void PerfectPopUp()
+    {
+      popUp = Instantiate(perfectScoreUI, transform.position, Quaternion.identity) as GameObject;
+
+      continueButton = GameObject.Find("PerfectScoreUI(Clone)/ContinueButton").GetComponent<Button>();
+      continueButton.onClick.AddListener(delegate {Exit(); });
+    }
+
+    // level passed UI
+    void levelPassedPopUp()
+    {
+      popUp = Instantiate(levelCompleteUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("LevelCompleteUI(Clone)/Text").GetComponent<Text>();
+      ans.text = "Congratulations,\nLevel Passed!\nPersonal Score: " + scoreScript.getPersonalScore() + "/10\nCommunity Score: "+scoreScript.getCommunityScore() + "/5";
+
+      continueButton = GameObject.Find("LevelCompleteUI(Clone)/ContinueButton").GetComponent<Button>();
+      continueButton.onClick.AddListener(delegate {Exit(); });
     }
 
     // level failed popUp
     void levelFailedPopUp()
     {
       popUp = Instantiate(levelFailedUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("levelFailedUI(Clone)/Canvas/Text").GetComponent<Text>();
+      System.Random rnd = new System.Random();
+      ans.text = "Level Failed!\n"+responses[rnd.Next(0,3)];
+
+      // Buttons
       restart = GameObject.Find("levelFailedUI(Clone)/Buttons/Restart").GetComponent<Button>();
       exit = GameObject.Find("levelFailedUI(Clone)/Buttons/Exit").GetComponent<Button>();
       restart.onClick.AddListener(delegate {Restart(); });

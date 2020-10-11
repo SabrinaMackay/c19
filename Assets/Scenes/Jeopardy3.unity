@@ -182,7 +182,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2462,11 +2462,15 @@ MonoBehaviour:
   ans1: {fileID: 1332485116}
   ans2: {fileID: 1448556573}
   ans3: {fileID: 1529455255}
-  correctUI: {fileID: 2735783859119561263, guid: a699e25289d094747b1f59cb6ace7bb7,
+  correctUI: {fileID: 8724049328158455463, guid: a699e25289d094747b1f59cb6ace7bb7,
     type: 3}
-  incorrectUI: {fileID: 5153952299860649391, guid: efeab8a9fdb39464f9d38a7f2a1b8f31,
+  incorrectUI: {fileID: 5914925095456694125, guid: 4e27e46192efc304d8f6ad3ceac3c7b5,
     type: 3}
   levelFailedUI: {fileID: 616112745050634036, guid: b4d0ecb83b1a4d640bfd33c3c04919dd,
+    type: 3}
+  levelCompleteUI: {fileID: 8084189064485508928, guid: 5dcb5b720d6217d49a52293ebe34c62c,
+    type: 3}
+  perfectScoreUI: {fileID: 3981899726991146096, guid: 974b0415cf28b8c4db8c4e6aa94a436e,
     type: 3}
   currentHealth: 0
   score: 1

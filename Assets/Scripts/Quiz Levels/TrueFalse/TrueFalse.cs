@@ -7,19 +7,21 @@ using UnityEngine.SceneManagement;
 public class TrueFalse : MonoBehaviour
 {
     //Possible questions and their answers
-    public ArrayList question1 = new ArrayList() { "Your mask should be loose on your face.", "True", "False" , "0", "com"};
-  	public ArrayList question2 = new ArrayList() { "Wearing a mask prevents you from getting infected.", "True", "False" , "0", "pers"};
-  	public ArrayList question3 = new ArrayList() { "Thermal scanners cannot detect COVID-19.", "True", "False" ,"1", "pers"};
-  	public ArrayList question4 = new ArrayList() { "Exposing yourself to the sun decreases your chances of getting COVID-19.", "True", "False" ,"0", "pers"};
-    public ArrayList question5 = new ArrayList() { "UV lamps should be used to disinfect your hands or other areas of your body.", "True", "False" ,"0", "pers"};
-    public ArrayList question6 = new ArrayList() { "You no longer pose a threat to others once you have completed quarantine and you are symptom free for more than 72 hours.", "True", "False" ,"1", "both"};
-    public ArrayList question7 = new ArrayList() { "You can always tell if someone has COVID-19.", "True", "False" ,"0", "pers"};
-    public ArrayList question8 = new ArrayList() { "COVID-19 and SARS are the same virus.", "True", "False" ,"0", "pers"};
-    public ArrayList question9 = new ArrayList() { "There is no vaccine or cure currently for COVID-19.", "True", "False" ,"1", "both"};
-    public ArrayList question10 = new ArrayList() { "There is a difference between being isolated and being quarantined.", "True", "False" ,"1", "pers"};
-    public ArrayList question11 = new ArrayList() { "If you are displaying any symptoms or have come into contact with an infected person, then you should definitely go to school or work.", "True", "False" ,"0", "both"};
-    public ArrayList question12 = new ArrayList() { "The Corona virus is passed on through respiratory droplets i.e. a cough or a sneeze. ", "True", "False" ,"1", "both"};
+    public ArrayList question1 = new ArrayList() { "Your mask should be loose on your face.", "True", "False" , "1", "com"};
+  	public ArrayList question2 = new ArrayList() { "Wearing a mask prevents you from getting infected.", "True", "False" , "1", "pers"};
+  	public ArrayList question3 = new ArrayList() { "Thermal scanners cannot detect COVID-19.", "True", "False" ,"0", "pers"};
+  	public ArrayList question4 = new ArrayList() { "Exposing yourself to the sun decreases your chances of getting COVID-19.", "True", "False" ,"1", "pers"};
+    public ArrayList question5 = new ArrayList() { "UV lamps should be used to disinfect your hands or other areas of your body.", "True", "False" ,"1", "pers"};
+    public ArrayList question6 = new ArrayList() { "You no longer pose a threat to others once you have completed quarantine and you are symptom free for more than 72 hours.", "True", "False" ,"0", "both"};
+    public ArrayList question7 = new ArrayList() { "You can always tell if someone has COVID-19.", "True", "False" ,"1", "pers"};
+    public ArrayList question8 = new ArrayList() { "COVID-19 and SARS are the same virus.", "True", "False" ,"1", "pers"};
+    public ArrayList question9 = new ArrayList() { "There is no vaccine or cure currently for COVID-19.", "True", "False" ,"0", "both"};
+    public ArrayList question10 = new ArrayList() { "There is a difference between being isolated and being quarantined.", "True", "False" ,"0", "pers"};
+    public ArrayList question11 = new ArrayList() { "If you are displaying any symptoms or have come into contact with an infected person, then you should definitely go to school or work.", "True", "False" ,"1", "com"};
+    public ArrayList question12 = new ArrayList() { "The Corona virus is passed on through respiratory droplets i.e. a cough or a sneeze. ", "True", "False" ,"0", "both"};
 
+    // canned response
+    public ArrayList responses = new ArrayList () {"Your avatar has been infected and is currently being kept in quarantine :(", " Your avatar was caught hugging his friends earlier today. ", "Due to proper lack of knowledge, your avatar thought that the reason for wearing a mask was to protect himself."};
 
 
     //The ArrayList thats content will be displayed on the UI
@@ -33,10 +35,15 @@ public class TrueFalse : MonoBehaviour
     private Button restart;
     private Button exit;
 
+    // level passed UI button
+    private Button continueButton;
+
     //Correct and Incorrect Canvas
     public GameObject correctUI;
     public GameObject incorrectUI;
     public GameObject levelFailedUI;
+    public GameObject levelCompleteUI;
+    public GameObject perfectScoreUI;
     private GameObject popUp;
 
     // default colour for the possible answers
@@ -64,9 +71,9 @@ public class TrueFalse : MonoBehaviour
     void Start()
     {
         //Button listener method
-        // 1 - True, 0 - False
-        ans1.onClick.AddListener(delegate {ChosenAnswer(1); });
-        ans2.onClick.AddListener(delegate {ChosenAnswer(0); });
+        // 0 - True, 1 - False
+        ans1.onClick.AddListener(delegate {ChosenAnswer(0); });
+        ans2.onClick.AddListener(delegate {ChosenAnswer(1); });
 
         // access score Script
         scoreScript = GameObject.Find("Quiz UI/Scores").GetComponent<Score>();
@@ -154,7 +161,7 @@ public class TrueFalse : MonoBehaviour
           // change colour of selected option
           switchRed();
 
-          // increase infection bar by 20
+          // increase infection bar by a third
           currentHealth += 33;
           infectionB.SetHealth(currentHealth);
 
@@ -189,7 +196,14 @@ public class TrueFalse : MonoBehaviour
         if(num>=12)
         {
             levelScript.unlockAndSaveLevel(true, true, false);
-            SceneManager.LoadScene (sceneName:"MainMenu");
+
+            if(scoreScript.getPersonalScore() == 10 && scoreScript.getCommunityScore() == 5)
+            {
+              PerfectPopUp();
+            }else
+            {
+              levelPassedPopUp();
+            }
         }
 
         //Four Questions will be displayed in then there will be a transition to the next scene
@@ -200,11 +214,11 @@ public class TrueFalse : MonoBehaviour
     {
       switch(checkNumber)
       {
-        case 1:
+        case 0:
           ans1.GetComponent<Image>().color = Color.red;
           break;
 
-        case 0:
+        case 1:
           ans2.GetComponent<Image>().color = Color.red;
           break;
 
@@ -215,11 +229,11 @@ public class TrueFalse : MonoBehaviour
     {
       switch(checkNumber)
       {
-        case 1:
+        case 0:
           ans1.GetComponent<Image>().color = Color.green;
           break;
 
-        case 0:
+        case 1:
           ans2.GetComponent<Image>().color = Color.green;
           break;
 
@@ -231,11 +245,11 @@ public class TrueFalse : MonoBehaviour
     {
       switch(checkNumber)
       {
-        case 1:
+        case 0:
           ans1.GetComponent<Image>().color = purple;
           break;
 
-        case 0:
+        case 1:
           ans2.GetComponent<Image>().color = purple;
           break;
 
@@ -245,13 +259,15 @@ public class TrueFalse : MonoBehaviour
     // show correct UI
     void correctPopUp(){
       popUp = Instantiate(correctUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("CorrectUI(Clone)/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer+1];
     }
 
     // show incorrect UI
     void incorrectPopUp(){
       popUp = Instantiate(incorrectUI, transform.position, Quaternion.identity) as GameObject;
-      Text ans = GameObject.Find("IncorrectUI(Clone)/Canvas/AnswerText").GetComponent<Text>();
-      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer];
+      Text ans = GameObject.Find("IncorrectUI(Clone)/AnswerText").GetComponent<Text>();
+      ans.text = "Answer: \n" + (string)displayQuestion[correctAnswer+1];
     }
 
     // reset all values
@@ -262,10 +278,35 @@ public class TrueFalse : MonoBehaviour
       infectionB.resetBar();
     }
 
+    // level passed UI
+    void levelPassedPopUp()
+    {
+      popUp = Instantiate(levelCompleteUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("LevelCompleteUI(Clone)/Text").GetComponent<Text>();
+      ans.text = "Congratulations,\nLevel Passed!\nPersonal Score: " + scoreScript.getPersonalScore() + "/10\nCommunity Score: "+scoreScript.getCommunityScore() + "/5";
+
+      continueButton = GameObject.Find("LevelCompleteUI(Clone)/ContinueButton").GetComponent<Button>();
+      continueButton.onClick.AddListener(delegate {Exit(); });
+    }
+
+    // Perfect score UI
+    void PerfectPopUp()
+    {
+      popUp = Instantiate(perfectScoreUI, transform.position, Quaternion.identity) as GameObject;
+
+      continueButton = GameObject.Find("PerfectScoreUI(Clone)/ContinueButton").GetComponent<Button>();
+      continueButton.onClick.AddListener(delegate {Exit(); });
+    }
+
     // level failed popUp
     void levelFailedPopUp()
     {
       popUp = Instantiate(levelFailedUI, transform.position, Quaternion.identity) as GameObject;
+      Text ans = GameObject.Find("levelFailedUI(Clone)/Canvas/Text").GetComponent<Text>();
+      System.Random rnd = new System.Random();
+      ans.text = "Level Failed!\n"+responses[rnd.Next(0,3)];
+
+      // Buttons
       restart = GameObject.Find("levelFailedUI(Clone)/Buttons/Restart").GetComponent<Button>();
       exit = GameObject.Find("levelFailedUI(Clone)/Buttons/Exit").GetComponent<Button>();
       restart.onClick.AddListener(delegate {Restart(); });
