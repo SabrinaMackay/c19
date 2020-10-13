@@ -14,7 +14,7 @@ public class LevelVisibility : MonoBehaviour
 		// persistent storage stuff below
 
 		// Level script access
-		Level levelScript;
+	Level levelScript;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class LevelVisibility : MonoBehaviour
 				// load level data first
 				levelScript = GameObject.Find("Levels").GetComponent<Level>();
 				// levelScript.unlockAndSaveLevel(false, false, false);
-				levelScript.LoadUnlockedLevels();
+				//levelScript.LoadUnlockedLevels();
 
         level1.onClick.AddListener(delegate {InteractableLevel(1); });
         level2.onClick.AddListener(delegate {InteractableLevel(2); });
