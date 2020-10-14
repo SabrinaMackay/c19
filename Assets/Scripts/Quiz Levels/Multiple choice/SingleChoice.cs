@@ -212,8 +212,6 @@ public class SingleChoice : MonoBehaviour
                 break;
         }
 
-        //Output this to console when Button1 or Button3 is clicked
-        Debug.Log($"You have clicked the button {number}!");
     }
 
     void backToQuiz(){
