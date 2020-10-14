@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     private bool isOnGround;
 
+    // Joystick
+    public Joystick js;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
         // updating avatar's position based on movement input detected
-        horizontal_movement = Input.GetAxis("Horizontal");
+        horizontal_movement = js.Horizontal;
 
         // moving right
         if(horizontal_movement > 0f){
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Checking if player is trying to jump while on the ground
-        if(Input.GetButtonDown("Jump") && isOnGround){
+        if(js.Vertical > 0.5f && isOnGround){
           avatar.velocity = new Vector2(avatar.velocity.x, jump_speed);
         }
 
