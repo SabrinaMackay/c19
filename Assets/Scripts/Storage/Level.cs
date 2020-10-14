@@ -23,8 +23,15 @@ public class Level : MonoBehaviour
   {
     LevelData data = LevelManager.LoadLevel();
 
-    level2 = data.level2;
-    level3 = data.level3;
-    level4 = data.level4;
+    if(data != null)
+    {
+      level2 = data.level2;
+      level3 = data.level3;
+      level4 = data.level4;
+    }
+    else
+    {
+      Debug.Log("Save file not found! This shouldn't be a problem if you're running the game for the first time or haven't unlocked any levels yet.");
+    }
   }
 }

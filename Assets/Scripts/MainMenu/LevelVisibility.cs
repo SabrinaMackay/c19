@@ -21,8 +21,7 @@ public class LevelVisibility : MonoBehaviour
     {
 				// load level data first
 				levelScript = GameObject.Find("Levels").GetComponent<Level>();
-				// levelScript.unlockAndSaveLevel(false, false, false);
-				//levelScript.LoadUnlockedLevels();
+				levelScript.LoadUnlockedLevels();
 
         level1.onClick.AddListener(delegate {InteractableLevel(1); });
         level2.onClick.AddListener(delegate {InteractableLevel(2); });

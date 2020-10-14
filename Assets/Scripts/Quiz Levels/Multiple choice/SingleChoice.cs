@@ -18,7 +18,7 @@ public class SingleChoice : MonoBehaviour
     public ArrayList question9 = new ArrayList() { "What is the purpose of the outer layer of an ideal fabric mask", "It repels droplets and moisture", "Absorb droplets from your exhaled breath", "To make the mask fashionable", "It absorbs droplets and moisture" ,"1", "both"};
     public ArrayList question10 = new ArrayList() { "What is the purpose of the inner layer of an ideal fabric mask?", "It repels droplets and moisture", "Absorb droplets from your exhaled breath", "To make the mask fashionable", "It absorbs droplets and moisture" ,"2", "both"};
     public ArrayList question11 = new ArrayList() { "What measures should you not take when using public transport?", "Avoid touching surfaces", "Sanitize your hands", "Ensure the windows are open", "Minimize the space between yourself & the passengers" ,"4", "pers"};
-    public ArrayList question12 = new ArrayList() { "Who is at higher risk for developing severe illness from COVID-19?", "Toddlers", "Doctors", "Those with underlying medical conditions", "Those who don't wear masks" ,"3", "pers"};
+    public ArrayList question12 = new ArrayList() { "Who is at higher risk of developing severe illness from COVID-19?", "Toddlers", "Doctors", "Those with underlying medical conditions", "Those who don't wear masks" ,"3", "pers"};
 
 
     //The ArrayList thats content will be displayed on the UI
