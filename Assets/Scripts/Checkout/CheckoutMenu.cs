@@ -14,15 +14,13 @@ public class CheckoutMenu : MonoBehaviour
 
     void Start(){
         checkoutMenuUI.SetActive(false);
+        btnCheckout.onClick.AddListener(Checkout);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        btnCheckout = GameObject.Find("CheckoutButtonContainer/Button").GetComponent<Button>();
-        btnCheckout.onClick.AddListener(Checkout);
-        //checkoutMenuUI = GameObject.Find("CheckoutMenuContainer/CheckoutMenu").GetComponent<GameObject>();
-
         //checks if the checkout button has been clicked
         if(gameOver){
         	ExitMenu();
@@ -38,7 +36,7 @@ public class CheckoutMenu : MonoBehaviour
     void ExitMenu()
     {
     	checkoutMenuUI.SetActive(true);
-    	gameOver = true;
+    	gameOver = false;
     }
 
 
